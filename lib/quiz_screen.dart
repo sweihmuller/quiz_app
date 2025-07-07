@@ -3,7 +3,9 @@ import 'package:quiz_app/home_page.dart';
 import 'package:quiz_app/questions_screen.dart';
 
 class QuizScreen extends StatefulWidget {
-  const QuizScreen({super.key});
+  const QuizScreen({super.key, required this.onSelectAnswer});
+
+  final void Function(String answer) onSelectAnswer;
 
   @override
   State<QuizScreen> createState() {
@@ -12,6 +14,7 @@ class QuizScreen extends StatefulWidget {
 }
 
 class _QuestionScreenState extends State<QuizScreen> {
+  final List<String> selectedAnswers = [];
   Widget? activeScreen;
 
   @override
@@ -20,9 +23,13 @@ class _QuestionScreenState extends State<QuizScreen> {
     super.initState();
   }
 
+  void chooseAnswers(String answer) {
+    selectedAnswers.add(answer);
+  }
+
   void switchScreen() {
     setState(() {
-      activeScreen = const QuestionsScreen();
+      activeScreen = QuestionsScreen(onSelectAnswer: chooseAnswers);
     });
   }
 
