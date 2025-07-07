@@ -24,9 +24,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
           ElevatedButton.icon(
-            onPressed: () {
-              startQuiz();
-            },
+            onPressed: startQuiz,
             icon: Icon(Icons.arrow_right_alt, size: 35),
             label: const Text(
               'Start quiz',
