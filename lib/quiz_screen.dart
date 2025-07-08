@@ -13,7 +13,7 @@ class QuizScreen extends StatefulWidget {
 }
 
 class _QuestionScreenState extends State<QuizScreen> {
-  final List<String> selectedAnswers = [];
+  List<String> selectedAnswers = [];
   //Widget? activeScreen;
   var activeScreen = 'start-screen';
 
@@ -24,6 +24,13 @@ class _QuestionScreenState extends State<QuizScreen> {
         activeScreen = 'result-screen';
       });
     }
+  }
+
+  void restartQuiz() {
+    selectedAnswers = [];
+    setState(() {
+      activeScreen = 'start-screen';
+    });
   }
 
   void switchScreen() {
@@ -43,7 +50,10 @@ class _QuestionScreenState extends State<QuizScreen> {
     }
 
     if (activeScreen == 'result-screen') {
-      screenWidget = ResultScreen(chosenAnswers: selectedAnswers);
+      screenWidget = ResultScreen(
+        chosenAnswers: selectedAnswers,
+        onRestart: restartQuiz,
+      );
     }
     return MaterialApp(
       home: Scaffold(backgroundColor: Colors.deepPurple, body: screenWidget),
