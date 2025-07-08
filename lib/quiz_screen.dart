@@ -43,7 +43,7 @@ class _QuestionScreenState extends State<QuizScreen> {
     }
 
     if (activeScreen == 'result-screen') {
-      screenWidget = ResultScreen();
+      screenWidget = ResultScreen(chosenAnswers: selectedAnswers);
     }
     return MaterialApp(
       home: Scaffold(backgroundColor: Colors.deepPurple, body: screenWidget),
